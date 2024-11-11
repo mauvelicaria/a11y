@@ -1,0 +1,31 @@
+name: Push Request - Run Lighthouse
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+
+      - name: Run Lighthouse Audit
+        run: lighthouse https://museable.com --output=json --output-path=./lighthouse-report.json
+
+      - name: Upload Lighthouse Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-report
+          path: ./lighthouse-report.json
