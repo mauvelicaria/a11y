@@ -29,3 +29,6 @@ jobs:
         with:
           name: lighthouse-report
           path: ./lighthouse-report.json
+
+      - name: Print GITHUB_WORKSPACE path
+        run: echo $GITHUB_WORKSPACE
