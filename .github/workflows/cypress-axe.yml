@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npx cypress run --headless
         env:
           CYPRESS_BASE_URL: "https://museable.com"
 
